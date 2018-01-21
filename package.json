@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "create": "webpack",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "build": "NODE_ENV='production' webpack -p",
+    "deploy": "npm run build && firebase deploy",
+    "firebase-init": "firebase login && firebase init"
   },
   "babel": {
     "presets": [
@@ -32,6 +35,7 @@
     "css-loader": "^0.28.7",
     "eslint": "^4.14.0",
     "eslint-plugin-react": "^7.5.1",
+    "firebase-tools": "^3.17.3",
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
