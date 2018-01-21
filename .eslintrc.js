@@ -29,6 +29,7 @@ module.exports = {
         "quotes": [
             "error",
             "single"
-        ]
+        ],
+        "no-console": 0
     }
 };
