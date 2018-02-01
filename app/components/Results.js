@@ -1,11 +1,10 @@
-const React = require('react');
-const PropTypes = require('prop-types');
-const Link = require('react-router-dom').Link;
-const queryString = require('query-string');
+import { React } from 'react';
+import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
+import { queryString } from 'query-string';
 
-
-const api = require('../utils/api');
-const PlayerPreview = require('./PlayerPreview');
+import * as api from '../utils/api';
+import { PlayerPreview } from './PlayerPreview';
 
 function Profile({ info }) {
 
@@ -112,4 +111,4 @@ class Results extends React.Component {
 
 
 
-module.exports = Results;
+export default Results

@@ -41,19 +41,16 @@ function sortPlayers(players) {
     );
 }
 
-module.exports = {
+export function battle(players) {
+    return Promise.all(players.map(getUserData))
+        .then(sortPlayers)
+        .catch(handleError)
+}
 
-    battle: function (players) {
-        return Promise.all(players.map(getUserData))
-            .then(sortPlayers)
-            .catch(handleError)
-    },
+export function fetchPopularRepos(language) {
+    var encodedURI = window.encodeURI(`https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`);
 
-    fetchPopularRepos: function (language) {
-        var encodedURI = window.encodeURI(`https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`);
-
-        return axios.get(encodedURI)
-            .then(({ data }) => data.items
-            );
-    }
+    return axios.get(encodedURI)
+        .then(({ data }) => data.items
+        );
 }
