@@ -1,7 +1,7 @@
-import { React, Component } from 'react';
-import { PropTypes } from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../utils/api';
-import { Loading } from './loading';
+import Loading from './loading';
 
 function SelectLanguage({ selectedLanguage, onSelect }) {
     const languages = ['All', 'Javascript', 'Ruby', 'Java', 'Python'];
@@ -58,28 +58,21 @@ RepoGrid.propTypes = {
     repos: PropTypes.array.isRequired
 }
 
-class Popular extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedLanguage: 'All',
-            repos: null
-        }
-
-        this.updateLanguage = this.updateLanguage.bind(this);
+class Popular extends React.Component {
+    state = {
+        selectedLanguage: 'All',
+        repos: null
     }
 
     componentDidMount() {
         this.updateLanguage(this.state.selectedLanguage)
     }
 
-    updateLanguage(lang) {
+    updateLanguage = async (lang) => {
         this.setState(() => ({ selectedLanguage: lang, repos: null }))
 
-        api.fetchPopularRepos(lang)
-            .then((repos) => {
-                this.setState(() => ({ repos }));
-            });
+        const repos = await api.fetchPopularRepos(lang)
+        this.setState(() => ({ repos }));
     }
 
     render() {

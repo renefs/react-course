@@ -15,7 +15,8 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "babel"
     ],
     "rules": {
         "indent": [
@@ -30,6 +31,7 @@ module.exports = {
             "error",
             "single"
         ],
-        "no-console": 0
+        "no-console": 0,
+        "babel/no-invalid-this": 1,
     }
 };
